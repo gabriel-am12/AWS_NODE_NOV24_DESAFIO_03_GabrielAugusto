@@ -7,6 +7,8 @@ API para o gerenciamento de pedidos, clientes e carros em um sistema de vendas d
 ### Pré-requisitos
 
 - [Node.js](https://nodejs.org/) (v14 ou superior)
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 - [MySQL](https://www.mysql.com/) (Caso não vá utilizar o Docker)
 
 1 - Clone o projeto
@@ -27,7 +29,21 @@ API para o gerenciamento de pedidos, clientes e carros em um sistema de vendas d
   npm install
 ```
 
-4 - Configure seu banco de dados no arquivo .env, por exemplo:
+4 - (COM DOCKER) Configure seu banco de dados no arquivo .env, por exemplo:
+
+```bash
+  DATABASE_URL="mysql://admin:admin@localhost:3306/compasscarv2"
+  JWT_SECRET="seu_token_secreto"
+```
+
+4.1 - Rode os comandos a seguir para construir e iniciar os contêineres:
+
+```bash
+  docker-compose build
+  docker-compose up
+```
+
+4 - (SEM DOCKER)Configure seu banco de dados no arquivo .env, por exemplo:
 
 ```bash
   DATABASE_URL="mysql://USER:PASSWORD@localhost:3306/DB_NAME"
