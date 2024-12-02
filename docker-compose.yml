@@ -1,45 +1,17 @@
 version: "3.8"
-
 services:
-  mysql:
-    image: mysql:latest
-    container_name: compassCarV2AWS
+  db:
+    image: postgres:15
+    container_name: postgres_container
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=compasscarv2
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=admin
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: compasscar
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - default
-
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: apicompasscar
-    restart: always
-    ports:
-      - "3000:3000"
-    environment:
-      DATABASE_URL: mysql://admin:admin@mysql:3306/compasscarv2
-      NODE_ENV: development
-    depends_on:
-      - mysql
-    networks:
-      - default
-    command: >
-      sh -c "
-      npx prisma migrate dev &&
-      npx prisma generate &&
-      npm run dev
-      "
+      - db_data:/var/lib/postgresql/data
 
 volumes:
-  mysql_data:
-networks:
-  default:
+  db_data:
