@@ -7,7 +7,7 @@
     "start": "node dist/app.js",
     "dev": "nodemon ./src/app.ts",
     "seed": "ts-node ./src/seeds/seed.ts",
-    "test": "jest --watch",
+    "test": "jest --watchAll",
     "lint": "eslint --config eslint.config.js --fix"
   },
   "author": "",

@@ -7,8 +7,14 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
-    "typeRoots": ["./node_modules/@types", "./src/types"] // Adicione esta linha
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "types": ["jest"]
   },
-  "include": ["src/**/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "tests/**/*.ts",
+    "src/__tests__/mockUtils.js"
+  ],
   "exclude": ["node_modules"]
 }
