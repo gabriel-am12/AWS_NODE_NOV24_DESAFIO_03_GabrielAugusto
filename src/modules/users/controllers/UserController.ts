@@ -27,7 +27,7 @@ class UserController {
       });
       return res.status(201).json(user);
     } catch (error: unknown) {
-      if (error instanceof Error) {
+      if (error instanceof Error && error.message !== "Erro interno.") {
         return res.status(400).json({ error: error.message });
       } else {
         return res.status(500).json({ error: "Erro interno." });
@@ -46,7 +46,7 @@ class UserController {
 
       return res.status(200).json(user);
     } catch (error) {
-      if (error instanceof Error) {
+      if (error instanceof Error && error.message !== "Erro interno.") {
         return res.status(404).json({ error: error.message });
       } else {
         return res.status(500).json({ error: "Erro interno." });
@@ -84,7 +84,7 @@ class UserController {
 
       return res.status(200).json(users);
     } catch (error) {
-      if (error instanceof Error) {
+      if (error instanceof Error && error.message !== "Erro interno.") {
         return res.status(404).json({ error: error.message });
       } else {
         return res.status(500).json({ error: "Erro interno." });
@@ -110,10 +110,10 @@ class UserController {
       if (!updatedUser) {
         throw new Error("Usuário não encontrado.");
       }
-
+      console.log(updatedUser);
       return res.status(200).json({ updatedUser });
     } catch (error) {
-      if (error instanceof Error) {
+      if (error instanceof Error && error.message !== "Erro interno.") {
         if (error.message == "Email") {
           return res
             .status(400)
@@ -134,7 +134,7 @@ class UserController {
       await deleteUserService.deleteUser(id);
       return res.status(204).json();
     } catch (error) {
-      if (error instanceof Error) {
+      if (error instanceof Error && error.message !== "Erro interno.") {
         return res.status(404).json({ error: error.message });
       } else {
         return res.status(500).json({ error: "Erro interno" });

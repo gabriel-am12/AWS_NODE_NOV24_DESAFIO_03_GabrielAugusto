@@ -10,6 +10,16 @@ interface CreateUserInterface {
 }
 
 class CreateUserService {
+  /*
+  validate(arg0: { email: string; password: string; fullName: string }): {
+    error: any;
+  } {
+    throw new Error("Method not implemented.");
+  }
+  execute(arg0: { email: string; password: string; fullName: string }) {
+    throw new Error("Method not implemented.");
+  }
+    */
   async createUser(data: CreateUserInterface) {
     const { email, password } = data;
 
