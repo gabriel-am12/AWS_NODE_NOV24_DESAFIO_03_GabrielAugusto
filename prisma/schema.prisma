@@ -7,6 +7,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ADMIN
+  CLIENT
+  USER
+}
+
+enum Status {
+  ACTIVED
+  INACTIVED
+  DELETED
+}
+
+enum OrderStatus {
+  OPEN
+  APROVED
+  CANCELED
+}
+
 model User {
   id        String    @id @default(uuid())
   fullName  String
@@ -42,23 +60,22 @@ model Car {
   km        Int
   year      Int
   price     Float
+  Items     Items[]
   createdAt DateTime @default(now())
   uptadedAt DateTime @updatedAt
-  Items     Items[]
   Order     Order[]
 }
 
 model Items {
   id    String @id @default(uuid())
   name  String
-  carId String
   car   Car    @relation(fields: [carId], references: [id])
-
-  @@index([carId], map: "Items_carId_fkey")
+  carId String
 }
 
 model Order {
   id               String      @id @default(uuid())
+  client           Client      @relation(fields: [clientId], references: [id])
   clientId         String
   createdAt        DateTime    @default(now())
   uptadedAt        DateTime    @updatedAt
@@ -67,32 +84,10 @@ model Order {
   city             String
   state            String
   totalValue       Float
+  car              Car         @relation(fields: [carId], references: [id])
   carId            String
   paymentDate      DateTime?
   cancellationDate DateTime?
-  startDate        DateTime?
-  endDate          DateTime?
-  car              Car         @relation(fields: [carId], references: [id])
-  client           Client      @relation(fields: [clientId], references: [id])
-
-  @@index([carId], map: "Order_carId_fkey")
-  @@index([clientId], map: "Order_clientId_fkey")
-}
-
-enum Role {
-  ADMIN
-  CLIENT
-  USER
-}
-
-enum Status {
-  ACTIVED
-  INACTIVED
-  DELETED
-}
-
-enum OrderStatus {
-  OPEN
-  APROVED
-  CANCELED
+  startDate        DateTime? // Adicionado
+  endDate          DateTime? // Adicionado
 }
