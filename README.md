@@ -32,7 +32,7 @@ API para o gerenciamento de pedidos, clientes e carros em um sistema de vendas d
 4 - (COM DOCKER) Configure seu banco de dados no arquivo .env, por exemplo:
 
 ```bash
-  DATABASE_URL="mysql://admin:admin@localhost:3306/compasscarv2"
+  DATABASE_URL="postgresql://admin:root@localhost:5432/compasscar"
   JWT_SECRET="seu_token_secreto"
 ```
 
@@ -43,7 +43,7 @@ API para o gerenciamento de pedidos, clientes e carros em um sistema de vendas d
   docker-compose up
 ```
 
-4 - (SEM DOCKER)Configure seu banco de dados no arquivo .env, por exemplo:
+4 - (SEM DOCKER) Configure seu banco de dados no arquivo .env, por exemplo:
 
 ```bash
   DATABASE_URL="mysql://USER:PASSWORD@localhost:3306/DB_NAME"
@@ -69,7 +69,19 @@ API para o gerenciamento de pedidos, clientes e carros em um sistema de vendas d
   npm run dev
 ```
 
-Executar testes
+7.1 - Buildar a aplicação
+
+```bash
+  npm run build
+```
+
+7.2 - Iniciar a aplicação compilada
+
+```bash
+  npm start
+```
+
+8 - Executar testes
 
 ```bash
   npm run test
@@ -83,7 +95,14 @@ Executar Lint
 
 ## 🔢 Documentação da API
 
+#### OBS.: Testes que usem a rota da AWS em clientes como Postman ou Insomnia devem utilizar o seguinte prefixo nas rotas:
+
+```bash
+  http://ec2-18-227-24-212.us-east-2.compute.amazonaws.com:8080/restante padrão da rota
+```
+
 A documentação da API está disponível através do Swagger UI. Quando estiver rodando o projeto, você pode acessá-la em [http://localhost:3000/api-docs](http://localhost:3000/api-docs).
+Ou também no endereço AWS [http://ec2-18-227-24-212.us-east-2.compute.amazonaws.com:8080/api-docs/](http://ec2-18-227-24-212.us-east-2.compute.amazonaws.com:8080/api-docs/)
 
 ![Swagger UI](assets/swagger_print.png)
 
